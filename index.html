@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Que Tal Sem Glúten — Padaria e confeitaria sem glúten em Ponta Grossa</title>
+<meta name="description" content="Pães, bolos, tortas, doces e salgados sem glúten e sem lactose, feitos todo dia em Ponta Grossa. Encomendas pelo WhatsApp (42) 99994-3591.">
+<meta name="theme-color" content="#22454E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Que Tal Sem Glúten">
+<meta property="og:description" content="Comer sem glúten pode ser delicioso. Padaria e confeitaria sem glúten e sem lactose em Ponta Grossa.">
+<meta property="og:image" content="img/torta-morango.jpg">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="apple-touch-icon" href="img/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Que Tal Sem Glúten — estilos
+   Paleta: petróleo da marca + dourado da estrela + tons de
+   trigo, miolo de pão e café.
+   ========================================================= */
+
+:root{
+  --petroleo:      #22454e;
+  --petroleo-forte:#173037;
+  --petroleo-claro:#3a6570;
+  --dourado:       #c08a2e;
+  --dourado-claro: #e3b45f;
+  --creme:         #faf3e6;
+  --miolo:         #f0e2c8;
+  --crosta:        #a75f27;
+  --cafe:          #2b1e16;
+  --cafe-suave:    #5c4a3d;
+
+  --borda-suave: rgba(43,30,22,.14);
+  --largura: 1180px;
+
+  --display: "Fraunces", Georgia, serif;
+  --texto: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+
+body{
+  margin:0;
+  background:var(--creme);
+  color:var(--cafe);
+  font-family:var(--texto);
+  font-size:1.0625rem;
+  font-weight:400;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; display:block; height:auto; }
+
+h1,h2,h3{
+  font-family:var(--display);
+  font-weight:600;
+  line-height:1.08;
+  letter-spacing:-.015em;
+  margin:0 0 .5em;
+  font-variation-settings:"SOFT" 40, "WONK" 1;
+}
+
+p{ margin:0 0 1em; }
+a{ color:inherit; }
+
+:focus-visible{
+  outline:3px solid var(--dourado);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.pular{
+  position:absolute; left:-9999px; top:0;
+  background:var(--petroleo); color:var(--creme);
+  padding:.8rem 1.2rem; z-index:200;
+}
+.pular:focus{ left:.5rem; top:.5rem; }
+
+/* ---------- estrela da marca (motivo) ---------- */
+.estrela{
+  display:inline-block;
+  width:.72em; height:.72em;
+  background:var(--dourado);
+  vertical-align:middle;
+  flex:0 0 auto;
+  clip-path:polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%);
+}
+.estrela--grande{ width:22px; height:22px; }
+
+/* ---------- botões ---------- */
+.botao{
+  display:inline-flex; align-items:center; gap:.55rem;
+  background:var(--petroleo); color:var(--creme);
+  font-family:var(--texto); font-weight:500; font-size:1.02rem;
+  letter-spacing:.01em;
+  padding:.95rem 1.6rem;
+  border:0; border-radius:999px;
+  text-decoration:none;
+  transition:background .2s ease, transform .2s ease;
+}
+.botao::before{
+  content:""; width:.55rem; height:.55rem; background:var(--dourado-claro);
+  clip-path:polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%);
+}
+.botao:hover{ background:var(--petroleo-forte); }
+.botao:active{ transform:translateY(1px); }
+.botao--claro{ background:var(--miolo); color:var(--petroleo-forte); }
+.botao--claro:hover{ background:#fff; }
+.botao--claro::before{ background:var(--crosta); }
+.botao--pequeno{ padding:.62rem 1.1rem; font-size:.94rem; }
+
+.link-seta{
+  font-weight:500;
+  text-decoration:none;
+  border-bottom:1px solid var(--dourado);
+  padding-bottom:2px;
+}
+.link-seta:hover{ border-color:var(--petroleo); }
+
+/* =========================================================
+   TOPO
+   ========================================================= */
+.topo{
+  position:sticky; top:0; z-index:100;
+  background:rgba(250,243,230,.94);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease, background .25s ease;
+}
+.topo.rolou{ border-bottom-color:var(--borda-suave); }
+
+.topo__interno{
+  max-width:var(--largura);
+  margin:0 auto;
+  padding:.7rem 1.15rem;
+  display:flex; align-items:center; gap:1rem;
+}
+
+.marca{ display:flex; align-items:center; gap:.6rem; text-decoration:none; margin-right:auto; }
+.marca img{ width:38px; height:auto; }
+.marca__nome{
+  font-family:var(--display); font-size:1.02rem; font-weight:600;
+  line-height:1.02; color:var(--petroleo); display:flex; flex-direction:column;
+}
+.marca__nome em{ font-style:normal; font-weight:400; font-size:.82em; color:var(--cafe-suave); }
+
+.nav{ display:none; }
+.topo__cta{ display:none; }
+
+.menu-abrir{
+  width:44px; height:40px; display:grid; place-content:center; gap:5px;
+  background:transparent; border:1px solid var(--borda-suave); border-radius:10px;
+  cursor:pointer;
+}
+.menu-abrir span{ display:block; width:20px; height:1.6px; background:var(--petroleo); transition:transform .25s ease, opacity .2s ease; }
+.menu-abrir[aria-expanded="true"] span:nth-child(1){ transform:translateY(6.6px) rotate(45deg); }
+.menu-abrir[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.menu-abrir[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6.6px) rotate(-45deg); }
+
+.nav.aberto{
+  display:flex; flex-direction:column;
+  position:absolute; left:0; right:0; top:100%;
+  background:var(--creme);
+  border-bottom:1px solid var(--borda-suave);
+  padding:.5rem 1.15rem 1.2rem;
+}
+.nav.aberto a{
+  padding:.8rem 0; text-decoration:none; font-size:1.05rem;
+  border-bottom:1px solid var(--borda-suave);
+}
+.nav.aberto a:last-child{ border-bottom:0; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  background:var(--petroleo);
+  color:var(--creme);
+  padding:3.2rem 1.15rem 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:38%;
+  background:linear-gradient(to bottom, transparent, rgba(23,48,55,.55));
+  pointer-events:none;
+}
+
+.hero__texto{ max-width:var(--largura); margin:0 auto; position:relative; z-index:2; }
+
+.hero__titulo{
+  font-size:clamp(2.5rem, 11.5vw, 4.1rem);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1.02;
+  margin-bottom:.55rem;
+  color:#fff;
+}
+.hero__sub{
+  font-size:1.06rem;
+  color:#dfe8e6;
+  max-width:34ch;
+  margin-bottom:1.7rem;
+}
+.hero__acoes{ display:flex; flex-wrap:wrap; align-items:center; gap:1.2rem; }
+.hero__acoes .botao{ background:var(--miolo); color:var(--petroleo-forte); }
+.hero__acoes .botao::before{ background:var(--crosta); }
+.hero__acoes .botao:hover{ background:#fff; }
+.hero__acoes .link-seta{ color:#e7d9bd; }
+
+.hero__fotos{
+  max-width:var(--largura);
+  margin:2.6rem auto 0;
+  position:relative; z-index:2;
+  display:grid; gap:.7rem;
+  grid-template-columns:1fr 1fr;
+}
+.hero__foto{ margin:0; overflow:hidden; }
+.hero__foto img{ width:100%; height:100%; object-fit:cover; }
+.hero__foto--grande{
+  grid-column:1 / -1;
+  border-radius:200px 200px 6px 6px;
+  aspect-ratio:5/3;
+}
+.hero__foto--pequena{ display:none; }
+
+@media (prefers-reduced-motion: no-preference){
+  .hero__titulo,.hero__sub,.hero__acoes,.hero__fotos{
+    animation:sobe .8s cubic-bezier(.22,.75,.3,1) both;
+  }
+  .hero__sub{ animation-delay:.09s; }
+  .hero__acoes{ animation-delay:.17s; }
+  .hero__fotos{ animation-delay:.24s; }
+}
+@keyframes sobe{
+  from{ opacity:0; transform:translateY(18px); }
+  to{ opacity:1; transform:none; }
+}
+
+/* =========================================================
+   FAIXA CORRIDA
+   ========================================================= */
+.faixa{
+  background:var(--petroleo-forte);
+  color:var(--miolo);
+  overflow:hidden;
+  padding:.85rem 0;
+  border-top:1px solid rgba(240,226,200,.16);
+}
+.faixa__trilho{ display:flex; width:max-content; }
+.faixa__grupo{
+  display:flex; align-items:center; gap:1.4rem;
+  padding-right:1.4rem;
+  font-family:var(--display);
+  font-size:1.02rem; letter-spacing:.02em;
+  white-space:nowrap;
+}
+@media (prefers-reduced-motion: no-preference){
+  .faixa__trilho{ animation:corre 26s linear infinite; }
+}
+@keyframes corre{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* =========================================================
+   SOBRE
+   ========================================================= */
+.sobre{ padding:3.6rem 1.15rem 3.2rem; }
+.sobre__grade{ max-width:var(--largura); margin:0 auto; display:grid; gap:2rem; }
+
+.sobre__texto h2{
+  font-size:clamp(1.9rem, 7.6vw, 2.7rem);
+  color:var(--petroleo-forte);
+  max-width:15ch;
+}
+.sobre__texto p{ max-width:60ch; color:var(--cafe-suave); }
+.sobre__assinatura{
+  font-family:var(--display); font-style:italic;
+  color:var(--crosta); font-size:1rem;
+}
+
+.sobre__foto{ margin:0; }
+.sobre__foto img{
+  width:100%; aspect-ratio:4/5; object-fit:cover;
+  border-radius:6px 6px 140px 140px;
+}
+.sobre__foto figcaption{
+  margin-top:.7rem; font-size:.9rem; color:var(--cafe-suave);
+}
+
+/* =========================================================
+   TÍTULOS DE SEÇÃO
+   ========================================================= */
+.secao-topo{ max-width:var(--largura); margin:0 auto 2rem; }
+.secao-topo h2{
+  font-size:clamp(1.85rem, 7.4vw, 2.6rem);
+  color:var(--petroleo-forte);
+}
+.secao-topo p{ color:var(--cafe-suave); max-width:52ch; margin:0; }
+.secao-topo--claro h2{ color:var(--creme); }
+.secao-topo--claro p{ color:#cdd9d7; }
+
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
+.produtos{
+  background:var(--miolo);
+  padding:3.4rem 1.15rem 3.6rem;
+  border-top:1px solid var(--borda-suave);
+}
+
+.cardapio{
+  max-width:var(--largura); margin:0 auto;
+  display:grid; gap:1.6rem;
+}
+.item{ background:var(--creme); border-radius:4px 4px 4px 34px; overflow:hidden; }
+.item__foto{ aspect-ratio:4/3; overflow:hidden; }
+.item__foto img{ width:100%; height:100%; object-fit:cover; }
+.item__texto{ padding:1.25rem 1.35rem 1.5rem; }
+.item__texto h3{
+  font-size:1.42rem; color:var(--petroleo-forte); margin-bottom:.35rem;
+}
+.item__texto p{ margin:0; color:var(--cafe-suave); font-size:1rem; }
+
+.produtos__nota{
+  max-width:var(--largura); margin:2rem auto 0;
+  font-family:var(--display); font-style:italic; font-size:1.08rem;
+  color:var(--crosta);
+}
+
+/* =========================================================
+   PARA QUEM É
+   ========================================================= */
+.publico{
+  background:var(--petroleo);
+  color:var(--creme);
+  padding:3.6rem 1.15rem;
+}
+.publico__lista{
+  max-width:var(--largura); margin:0 auto; padding:0; list-style:none;
+  display:grid; gap:0;
+}
+.publico__lista li{
+  padding:1.6rem 0;
+  border-top:1px solid rgba(240,226,200,.22);
+}
+.publico__lista li:last-child{ border-bottom:1px solid rgba(240,226,200,.22); }
+.publico__lista h3{ font-size:1.38rem; color:#fff; margin-bottom:.3rem; }
+.publico__lista p{ margin:0; color:#cdd9d7; max-width:56ch; }
+
+/* =========================================================
+   PILARES
+   ========================================================= */
+.pilares{ padding:3.4rem 1.15rem; background:var(--creme); }
+.pilares__grade{
+  max-width:var(--largura); margin:0 auto;
+  display:grid; gap:1.9rem;
+}
+.pilar h3{ font-size:1.28rem; color:var(--petroleo-forte); margin:.7rem 0 .25rem; }
+.pilar p{ margin:0; color:var(--cafe-suave); max-width:46ch; }
+
+/* =========================================================
+   SEMANA / FESTAS
+   ========================================================= */
+.semana{
+  padding:3.4rem 1.15rem 3.8rem;
+  background:
+    linear-gradient(rgba(250,243,230,.86), rgba(250,243,230,.94)),
+    url("../img/trigo-textura.jpg") center/cover;
+  border-top:1px solid var(--borda-suave);
+}
+.semana__grade{ max-width:var(--largura); margin:0 auto; display:grid; gap:1.8rem; }
+.destaque{
+  background:var(--petroleo);
+  color:var(--creme);
+  border-radius:4px;
+  overflow:hidden;
+}
+.destaque__foto{ aspect-ratio:16/10; }
+.destaque__foto img{ width:100%; height:100%; object-fit:cover; }
+.destaque__texto{ padding:1.4rem 1.4rem 1.7rem; }
+.destaque__texto h3{ font-size:1.5rem; color:#fff; }
+.destaque__texto p{ color:#cdd9d7; margin-bottom:.7rem; }
+.destaque__horario{
+  font-family:var(--display); font-style:italic;
+  color:var(--dourado-claro) !important; margin:0 !important;
+}
+
+/* =========================================================
+   GALERIA
+   ========================================================= */
+.galeria{
+  background:var(--petroleo-forte);
+  padding:3.4rem 1.15rem 3.8rem;
+}
+.galeria__grade{
+  max-width:var(--largura); margin:0 auto;
+  display:grid; gap:.55rem;
+  grid-template-columns:repeat(2, 1fr);
+}
+.galeria__item{
+  padding:0; border:0; background:none; cursor:pointer;
+  overflow:hidden; border-radius:3px;
+  aspect-ratio:1;
+}
+.galeria__item img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .45s ease, filter .3s ease;
+  filter:saturate(.97);
+}
+.galeria__item:hover img{ transform:scale(1.05); filter:saturate(1.06); }
+.galeria__item:nth-child(7n+1){ grid-column:span 2; aspect-ratio:16/10; }
+
+/* =========================================================
+   CHAMADA FINAL
+   ========================================================= */
+.final{
+  background:var(--crosta);
+  color:var(--creme);
+  padding:4rem 1.15rem;
+  text-align:center;
+}
+.final__interno{ max-width:34rem; margin:0 auto; }
+.final .estrela--grande{ background:var(--miolo); margin-bottom:1rem; }
+.final h2{
+  font-size:clamp(2rem, 8.4vw, 3rem);
+  color:#fff;
+  margin-bottom:.5rem;
+}
+.final p{ color:#f6e6d4; }
+.final .botao{ margin-top:.7rem; }
+.final__tel{ margin-top:1.2rem; font-size:.98rem; }
+.final__tel a{ text-decoration:underline; text-underline-offset:3px; }
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+.rodape{ background:var(--petroleo-forte); color:#cdd9d7; padding:3rem 1.15rem 6rem; }
+.rodape__interno{
+  max-width:var(--largura); margin:0 auto;
+  display:grid; gap:2rem;
+}
+.rodape__marca img{ width:62px; margin-bottom:.8rem; }
+.rodape__marca p{ margin:0; }
+.rodape__bloco h3{
+  font-size:1.05rem; color:var(--miolo);
+  font-family:var(--texto); font-weight:500; letter-spacing:.04em;
+  margin-bottom:.5rem;
+}
+.rodape__bloco p{ margin:0 0 .4rem; }
+.rodape__bloco a{ text-decoration:none; border-bottom:1px solid rgba(240,226,200,.35); }
+.rodape__bloco a:hover{ border-color:var(--dourado-claro); color:#fff; }
+.rodape__base{
+  max-width:var(--largura); margin:2.6rem auto 0;
+  padding-top:1.4rem; border-top:1px solid rgba(240,226,200,.16);
+  font-size:.86rem; color:#93a8a6;
+}
+
+/* =========================================================
+   BOTÃO FLUTUANTE
+   ========================================================= */
+.zap-flutuante{
+  position:fixed; right:1rem; bottom:1rem; z-index:90;
+  width:56px; height:56px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--crosta); color:#fff;
+  box-shadow:0 8px 22px rgba(23,48,55,.35);
+  text-decoration:none;
+  transition:transform .2s ease, background .2s ease;
+}
+.zap-flutuante:hover{ background:var(--petroleo); transform:translateY(-2px); }
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+.lupa{
+  position:fixed; inset:0; z-index:150;
+  background:rgba(15,28,32,.97);
+  display:grid; place-items:center;
+  padding:1rem;
+}
+.lupa[hidden]{ display:none; }
+.lupa__img{
+  max-width:min(94vw, 900px); max-height:82vh;
+  object-fit:contain; border-radius:4px;
+}
+.lupa__fechar,.lupa__nav{
+  position:absolute;
+  background:rgba(250,243,230,.12); color:var(--creme);
+  border:0; cursor:pointer;
+  width:46px; height:46px; border-radius:50%;
+  font-size:1.7rem; line-height:1;
+  display:grid; place-items:center;
+}
+.lupa__fechar{ top:1rem; right:1rem; font-size:2rem; }
+.lupa__nav--ant{ left:.7rem; top:50%; transform:translateY(-50%); }
+.lupa__nav--prox{ right:.7rem; top:50%; transform:translateY(-50%); }
+.lupa__fechar:hover,.lupa__nav:hover{ background:rgba(250,243,230,.24); }
+
+body.travado{ overflow:hidden; }
+body.travado .topo,
+body.travado .zap-flutuante{ visibility:hidden; }
+
+/* =========================================================
+   TELAS MAIORES
+   ========================================================= */
+@media (min-width:640px){
+  .cardapio{ grid-template-columns:repeat(2,1fr); }
+  .pilares__grade{ grid-template-columns:repeat(2,1fr); gap:2.2rem 2.6rem; }
+  .rodape__interno{ grid-template-columns:1.4fr 1fr 1fr; }
+  .galeria__grade{ grid-template-columns:repeat(3,1fr); gap:.7rem; }
+  .galeria__item:nth-child(7n+1){ grid-column:auto; aspect-ratio:1; }
+  .galeria__item:nth-child(6n+1){ grid-column:span 2; grid-row:span 2; aspect-ratio:1; }
+  .hero__foto--pequena{ display:block; border-radius:6px 6px 6px 120px; aspect-ratio:1; }
+  .hero__foto--grande{ grid-column:span 1; aspect-ratio:4/5; }
+  .publico__lista{ grid-template-columns:repeat(3,1fr); gap:0 2rem; }
+  .publico__lista li:last-child{ border-bottom:0; }
+}
+
+@media (min-width:900px){
+  body{ font-size:1.09rem; }
+
+  .nav{
+    display:flex; gap:1.6rem; align-items:center;
+    margin-right:1.4rem;
+  }
+  .nav a{ text-decoration:none; font-size:.97rem; color:var(--cafe-suave); }
+  .nav a:hover{ color:var(--petroleo); }
+  .topo__cta{ display:inline-flex; }
+  .menu-abrir{ display:none; }
+  .marca img{ width:44px; }
+
+  .hero{ padding:5rem 2rem 0; }
+  .hero__titulo{ font-size:clamp(3.4rem, 5.6vw, 5rem); }
+  .hero__sub{ font-size:1.18rem; }
+  .hero__fotos{ grid-template-columns:1.35fr 1fr; gap:1rem; margin-top:3.4rem; }
+  .hero__foto--grande{ aspect-ratio:4/3.1; border-radius:240px 240px 6px 6px; }
+  .hero__foto--pequena{ aspect-ratio:4/3.1; }
+
+  .sobre{ padding:5.4rem 2rem; }
+  .sobre__grade{ grid-template-columns:1.15fr .85fr; gap:4rem; align-items:center; }
+
+  .produtos,.publico,.pilares,.semana,.galeria{ padding-left:2rem; padding-right:2rem; }
+  .produtos,.publico,.semana,.galeria{ padding-top:5rem; padding-bottom:5.4rem; }
+  .pilares{ padding-top:4.6rem; padding-bottom:4.6rem; }
+  .cardapio{ grid-template-columns:repeat(3,1fr); gap:1.8rem; }
+  .pilares__grade{ grid-template-columns:repeat(4,1fr); }
+  .semana__grade{ grid-template-columns:repeat(2,1fr); gap:2rem; }
+  .final{ padding:6rem 2rem; }
+  .rodape{ padding:4rem 2rem 3rem; }
+  .zap-flutuante{ right:1.6rem; bottom:1.6rem; }
+  .secao-topo{ margin-bottom:2.8rem; }
+}
+
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Que Tal Sem Glúten",
+  "description": "Padaria e confeitaria 100% sem glúten, com opções sem lactose.",
+  "telephone": "+5542999943591",
+  "address": { "@type": "PostalAddress", "addressLocality": "Ponta Grossa", "addressRegion": "PR", "addressCountry": "BR" },
+  "sameAs": ["https://www.instagram.com/quetalsemgluten/"],
+  "servesCuisine": "Sem glúten"
+}
+</script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="topo" id="topo">
+  <div class="topo__interno">
+    <a class="marca" href="#topo" aria-label="Que Tal Sem Glúten, início">
+      <img src="img/logo.png" alt="" width="44" height="52">
+      <span class="marca__nome">Que Tal<em>Sem Glúten</em></span>
+    </a>
+
+    <nav class="nav" id="menu" aria-label="Navegação principal">
+      <a href="#sobre">A padaria</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#para-quem">Para quem é</a>
+      <a href="#semana">Na semana</a>
+      <a href="#galeria">Galeria</a>
+    </nav>
+
+    <a class="botao botao--pequeno topo__cta" href="https://wa.me/5542999943591?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">Pedir no WhatsApp</a>
+
+    <button class="menu-abrir" id="menu-abrir" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="hero__texto">
+      <h1 class="hero__titulo">Comer sem glúten<br>pode ser delicioso.</h1>
+      <p class="hero__sub">Padaria e confeitaria 100% sem glúten em Ponta Grossa. Pão com casca dourada, bolo fofinho, torta que acaba antes do fim do dia — e quase tudo também sem lactose.</p>
+      <div class="hero__acoes">
+        <a class="botao" href="https://wa.me/5542999943591?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">Pedir no WhatsApp</a>
+        <a class="link-seta" href="#produtos">Ver o que sai do forno</a>
+      </div>
+    </div>
+
+    <div class="hero__fotos">
+      <figure class="hero__foto hero__foto--grande">
+        <img src="img/paes.jpg" alt="Pães sem glúten em saco de papel, com fatias tostadas e uma xícara de café" width="1400" height="975" fetchpriority="high">
+      </figure>
+      <figure class="hero__foto hero__foto--pequena">
+        <img src="img/torta-morango.jpg" alt="Torta redonda coberta de morangos frescos e creme" width="1400" height="1394" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======================= FAIXA ======================= -->
+  <div class="faixa" aria-hidden="true">
+    <div class="faixa__trilho" id="faixa-trilho">
+      <span class="faixa__grupo">
+        <span>Sabor</span><i class="estrela"></i>
+        <span>Cuidado</span><i class="estrela"></i>
+        <span>Feito todo dia</span><i class="estrela"></i>
+        <span>Sem glúten</span><i class="estrela"></i>
+        <span>Sem lactose</span><i class="estrela"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- ======================= SOBRE ======================= -->
+  <section class="sobre" id="sobre">
+    <div class="sobre__grade">
+      <div class="sobre__texto">
+        <h2>A gente não faz a versão “sem” de nada.</h2>
+        <p>Que Tal Sem Glúten nasceu de uma pergunta simples: por que quem não pode comer glúten precisa se contentar com menos? Aqui cada receita é desenvolvida do zero para ter miolo macio, casca dourada e gosto de padaria de verdade.</p>
+        <p>A cozinha é dedicada: nada de trigo entra por aqui, e boa parte do cardápio também é sem lactose. Todo dia sai um sabor diferente no balcão, e o que não está pronto a gente faz sob encomenda.</p>
+        <p class="sobre__assinatura">Ponta Grossa, Paraná · encomendas pelo WhatsApp</p>
+      </div>
+      <figure class="sobre__foto">
+        <img src="img/sanduiche-caprese.jpg" alt="Sanduíches caprese no pão francês sem glúten" width="1400" height="2052" loading="lazy">
+        <figcaption>Sanduíche caprese no pão francês da casa</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======================= PRODUTOS ======================= -->
+  <section class="produtos" id="produtos">
+    <header class="secao-topo">
+      <h2>O que sai do forno</h2>
+      <p>O balcão muda todo dia. Estes são os clássicos que sempre voltam.</p>
+    </header>
+
+    <div class="cardapio">
+      <article class="item">
+        <div class="item__foto"><img src="img/paes.jpg" alt="Pães sem glúten fresquinhos" width="1400" height="975" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Pães</h3>
+          <p>Pão de forma, pão de cenoura com chia, pão de hambúrguer. Aqueça antes de comer: a maciez volta inteira.</p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item__foto"><img src="img/bolo-morango.jpg" alt="Bolo de nata com morango em pote" width="1400" height="1394" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Bolos e fatias</h3>
+          <p>Nata com morango, prestígio, chocolate, abacaxi com ninho. Fatia no balcão ou bolo inteiro por encomenda.</p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item__foto"><img src="img/tortinha-mousse.jpg" alt="Tortinhas de mousse de chocolate com castanha" width="1400" height="1382" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Tortas e doces</h3>
+          <p>Tortinha de limão com chocolate, mousse com castanha, pote de brownie. Tudo sem glúten e sem lactose.</p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item__foto"><img src="img/bolo-decorado.jpg" alt="Bolo de festa decorado com chantili e pérolas" width="1400" height="1752" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Bolos de festa</h3>
+          <p>Aniversário, mesversário, casamento. Você escolhe sabor e decoração, a gente entrega o bolo que todo mundo pode comer.</p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item__foto"><img src="img/pizza-fatias.jpg" alt="Pizza sem glúten meio a meio" width="1400" height="1455" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Pizza e lanches</h3>
+          <p>Pizza sem glúten e sem lactose, hambúrguer artesanal, sanduíche caprese no pão francês da casa.</p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item__foto"><img src="img/cesta.jpg" alt="Cesta de presente com produtos sem glúten" width="1400" height="1598" loading="lazy"></div>
+        <div class="item__texto">
+          <h3>Cestas de presente</h3>
+          <p>Montamos a cesta do jeito que você quiser, para presentear quem come sem glúten sem abrir mão de nada.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="produtos__nota">Não achou o que procurava? Chame no WhatsApp — muita coisa sai sob encomenda.</p>
+  </section>
+
+  <!-- ======================= PARA QUEM É ======================= -->
+  <section class="publico" id="para-quem">
+    <header class="secao-topo secao-topo--claro">
+      <h2>Para quem é</h2>
+      <p>Se você já leu rótulo no meio do mercado tentando descobrir se dá para comer, este lugar é para você.</p>
+    </header>
+
+    <ul class="publico__lista">
+      <li>
+        <h3>Quem tem doença celíaca</h3>
+        <p>Cozinha dedicada, sem trigo circulando. Você come sem ficar calculando risco depois.</p>
+      </li>
+      <li>
+        <h3>Quem é sensível ao glúten</h3>
+        <p>Inchaço, gases, cansaço depois do pão. Dá para tirar o glúten sem tirar o prazer de comer.</p>
+      </li>
+      <li>
+        <h3>Quem quer comer melhor</h3>
+        <p>Menos ultraprocessado, mais comida de verdade. Sem glúten não é sinônimo de saudável — o que importa é como é feito.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ======================= DESTAQUES ======================= -->
+  <section class="pilares">
+    <div class="pilares__grade">
+      <div class="pilar">
+        <i class="estrela estrela--grande"></i>
+        <h3>Sabor primeiro</h3>
+        <p>Receita só entra no cardápio quando fica boa o bastante para quem come glúten também querer.</p>
+      </div>
+      <div class="pilar">
+        <i class="estrela estrela--grande"></i>
+        <h3>Cuidado em cada etapa</h3>
+        <p>Produção própria, ingredientes conferidos e nada de trigo dentro da cozinha.</p>
+      </div>
+      <div class="pilar">
+        <i class="estrela estrela--grande"></i>
+        <h3>Feito todo dia</h3>
+        <p>O balcão é montado diariamente, com sabor diferente a cada dia da semana.</p>
+      </div>
+      <div class="pilar">
+        <i class="estrela estrela--grande"></i>
+        <h3>Também sem lactose</h3>
+        <p>Boa parte do cardápio dispensa leite, para quem precisa cortar os dois.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= NA SEMANA ======================= -->
+  <section class="semana" id="semana">
+    <header class="secao-topo">
+      <h2>Na semana e na sua festa</h2>
+      <p>Além do balcão do dia a dia, tem hora marcada e tem forno que viaja.</p>
+    </header>
+
+    <div class="semana__grade">
+      <article class="destaque">
+        <div class="destaque__foto"><img src="img/combo-hamburguer.jpg" alt="Combo de hambúrguer sem glúten com batata frita e refrigerante" width="1400" height="835" loading="lazy"></div>
+        <div class="destaque__texto">
+          <h3>Sexta é dia de combo</h3>
+          <p>Hambúrguer artesanal sem glúten e sem lactose, batata frita e bebida gelada. Pizza também sai na sexta.</p>
+          <p class="destaque__horario">Sextas, das 17h às 20h · peça antes pelo WhatsApp</p>
+        </div>
+      </article>
+
+      <article class="destaque">
+        <div class="destaque__foto"><img src="img/pizza-forno.jpg" alt="Pizza sendo assada em forno" width="1400" height="1249" loading="lazy"></div>
+        <div class="destaque__texto">
+          <h3>Levamos o forno até você</h3>
+          <p>A gente vai até a sua festa e assa as pizzas na hora, sem glúten e sem lactose. Existem pacotes para tamanhos diferentes de evento.</p>
+          <p class="destaque__horario">Consulte data e pacote pelo WhatsApp</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= GALERIA ======================= -->
+  <section class="galeria" id="galeria">
+    <header class="secao-topo secao-topo--claro">
+      <h2>Do balcão para a mesa</h2>
+      <p>Toque em uma foto para ver maior.</p>
+    </header>
+
+    <!--
+      COMO ADICIONAR MAIS FOTOS:
+      1. salve a imagem em img/ (de preferência com até 1400px de largura)
+      2. copie um bloco <button class="galeria__item"> abaixo e troque src e alt
+      O lightbox reconhece automaticamente qualquer item novo.
+    -->
+    <div class="galeria__grade" id="galeria-grade">
+      <button class="galeria__item" type="button"><img src="img/torta-morango.jpg" alt="Torta coberta de morangos frescos" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/tortinha-limao.jpg" alt="Tortinhas de limão com chocolate" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/bolo-chocolate.jpg" alt="Fatia de bolo de chocolate com mousse" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/hamburguer.jpg" alt="Hambúrguer sem glúten com bacon e queijo" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/torta-laco.jpg" alt="Torta de frutas vermelhas embalada com laço e selo da marca" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/bolo-pessego.jpg" alt="Fatia de bolo de nata com pêssego" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/pote-brownie.jpg" alt="Pote de brownie com creme na vitrine" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/sanduiche-caprese.jpg" alt="Sanduíche caprese no pão francês sem glúten" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/bolo-mesversario.jpg" alt="Bolo de mesversário com decoração verde" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/torta-frutas.jpg" alt="Torta gelada com morangos e mirtilos" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/pao-cenoura-chia.jpg" alt="Fatias de pão de cenoura com chia" loading="lazy"></button>
+      <button class="galeria__item" type="button"><img src="img/bolo-decorado.jpg" alt="Bolo de festa branco decorado com pérolas" loading="lazy"></button>
+    </div>
+  </section>
+
+  <!-- ======================= CHAMADA FINAL ======================= -->
+  <section class="final" id="contato">
+    <div class="final__interno">
+      <i class="estrela estrela--grande"></i>
+      <h2>Que tal comer bem sem glúten?</h2>
+      <p>Mande uma mensagem contando o que você precisa: uma fatia para hoje, o bolo do aniversário ou a pizza da festa.</p>
+      <a class="botao botao--claro" href="https://wa.me/5542999943591?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <p class="final__tel">ou ligue: <a href="tel:+5542999943591">(42) 99994-3591</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="rodape__interno">
+    <div class="rodape__marca">
+      <img src="img/logo-claro.png" alt="Que Tal Sem Glúten" width="70" height="82">
+      <p>Padaria e confeitaria sem glúten.<br>Ponta Grossa · Paraná</p>
+    </div>
+
+    <div class="rodape__bloco">
+      <h3>Contato</h3>
+      <p><a href="https://wa.me/5542999943591" target="_blank" rel="noopener">WhatsApp (42) 99994-3591</a></p>
+      <p><a href="https://www.instagram.com/quetalsemgluten/" target="_blank" rel="noopener">Instagram @quetalsemgluten</a></p>
+    </div>
+
+    <div class="rodape__bloco">
+      <h3>Atendimento</h3>
+      <!-- TODO: confirmar horários da loja com a Que Tal Sem Glúten -->
+      <p>Encomendas pelo WhatsApp</p>
+      <p>Combo e pizza: sextas, 17h às 20h</p>
+    </div>
+  </div>
+
+  <p class="rodape__base">© <span id="ano">2026</span> Que Tal Sem Glúten · Todos os direitos reservados</p>
+</footer>
+
+<a class="zap-flutuante" href="https://wa.me/5542999943591?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" width="26" height="26"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.24-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.24-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.74 2.66 4.22 3.73.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+  <button class="lupa__fechar" id="lupa-fechar" aria-label="Fechar">&times;</button>
+  <button class="lupa__nav lupa__nav--ant" id="lupa-ant" aria-label="Foto anterior">&#8249;</button>
+  <img class="lupa__img" id="lupa-img" src="" alt="">
+  <button class="lupa__nav lupa__nav--prox" id="lupa-prox" aria-label="Próxima foto">&#8250;</button>
+</div>
+
+<script>
+/* =========================================================
+   Que Tal Sem Glúten — comportamento da página
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ---------- ano do rodapé ---------- */
+  var ano = document.getElementById('ano');
+  if (ano) ano.textContent = new Date().getFullYear();
+
+  /* ---------- menu no celular ---------- */
+  var botaoMenu = document.getElementById('menu-abrir');
+  var menu = document.getElementById('menu');
+
+  if (botaoMenu && menu) {
+    botaoMenu.addEventListener('click', function () {
+      var aberto = menu.classList.toggle('aberto');
+      botaoMenu.setAttribute('aria-expanded', String(aberto));
+      botaoMenu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    });
+
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('aberto');
+        botaoMenu.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ---------- linha no topo ao rolar ---------- */
+  var topo = document.getElementById('topo');
+  if (topo) {
+    var marcaRolagem = function () {
+      topo.classList.toggle('rolou', window.scrollY > 8);
+    };
+    marcaRolagem();
+    window.addEventListener('scroll', marcaRolagem, { passive: true });
+  }
+
+  /* ---------- faixa corrida: duplica o grupo para o loop ---------- */
+  var trilho = document.getElementById('faixa-trilho');
+  if (trilho && trilho.children.length === 1) {
+    trilho.appendChild(trilho.firstElementChild.cloneNode(true));
+  }
+
+  /* ---------- galeria com lightbox ---------- */
+  var grade = document.getElementById('galeria-grade');
+  var lupa = document.getElementById('lupa');
+  var lupaImg = document.getElementById('lupa-img');
+  var btFechar = document.getElementById('lupa-fechar');
+  var btAnt = document.getElementById('lupa-ant');
+  var btProx = document.getElementById('lupa-prox');
+
+  if (grade && lupa && lupaImg) {
+    var itens = Array.prototype.slice.call(grade.querySelectorAll('.galeria__item'));
+    var atual = 0;
+    var ultimoFoco = null;
+
+    function mostra(i) {
+      atual = (i + itens.length) % itens.length;
+      var foto = itens[atual].querySelector('img');
+      lupaImg.src = foto.getAttribute('src');
+      lupaImg.alt = foto.getAttribute('alt') || '';
+    }
+
+    function abre(i) {
+      ultimoFoco = document.activeElement;
+      mostra(i);
+      lupa.hidden = false;
+      document.body.classList.add('travado');
+      btFechar.focus();
+    }
+
+    function fecha() {
+      lupa.hidden = true;
+      lupaImg.src = '';
+      document.body.classList.remove('travado');
+      if (ultimoFoco) ultimoFoco.focus();
+    }
+
+    itens.forEach(function (item, i) {
+      item.addEventListener('click', function () { abre(i); });
+    });
+
+    btFechar.addEventListener('click', fecha);
+    btAnt.addEventListener('click', function () { mostra(atual - 1); });
+    btProx.addEventListener('click', function () { mostra(atual + 1); });
+
+    lupa.addEventListener('click', function (e) {
+      if (e.target === lupa) fecha();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (lupa.hidden) return;
+      if (e.key === 'Escape') fecha();
+      if (e.key === 'ArrowLeft') mostra(atual - 1);
+      if (e.key === 'ArrowRight') mostra(atual + 1);
+    });
+
+    /* arrastar para o lado no celular */
+    var xInicial = null;
+    lupa.addEventListener('touchstart', function (e) {
+      xInicial = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    lupa.addEventListener('touchend', function (e) {
+      if (xInicial === null) return;
+      var dx = e.changedTouches[0].clientX - xInicial;
+      if (Math.abs(dx) > 50) mostra(dx > 0 ? atual - 1 : atual + 1);
+      xInicial = null;
+    }, { passive: true });
+  }
+})();
+
+</script>
+</body>
+</html>
